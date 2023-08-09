@@ -1,0 +1,1 @@
+# zshrc-auto-sync
