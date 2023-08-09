@@ -1,3 +1,8 @@
 #!/bin/zsh
 
-fswatch -o $HOME/.zshrc $HOME/.zsh/ | xargs -n1 -I{} echo "file changed"
+DIR_PATH=`dirname "$0"`
+
+fswatch -o $HOME/.zshrc $HOME/.zsh/ | xargs -n1 zsh $DIR_PATH/commit_changes.sh
+
+
+
