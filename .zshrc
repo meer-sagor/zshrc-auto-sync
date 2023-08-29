@@ -101,7 +101,13 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias hosts="sudo nano /etc/hosts"
-alias workH="cd Wrorks/Hishabee/Distibutor-web-design"
+alias workH="cd Works/Hishabee/Distibutor-web-design"
+
+alias ggconfig='git config --global -e'
+alias glconfig='git config --local -e'
+
+
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
