@@ -70,7 +70,7 @@ ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "bira" )
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vscode yarn npm docker docker-compose zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git vscode yarn npm docker docker-compose zsh-syntax-highlighting zsh-autosuggestions fast-syntax-highlighting zsh-autocomplete)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +97,10 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias hosts="sudo nano /etc/hosts"
+alias ggconfig='git config --global -e'
+alias glconfig='git config --local -e'
+
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias sshconfig="code ~/.ssh/config"
@@ -105,3 +109,4 @@ alias sshconfig="code ~/.ssh/config"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
