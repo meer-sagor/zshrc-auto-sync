@@ -2,7 +2,6 @@
 
 source github_config.sh
 
-#ACCESS_TOKEN="your-access-token"
 FILE_PATH=".zshrc"
 
 echo "Checking for differences in $FILE_PATH between local and $PUSH_GITHUB_REPO_URL"
@@ -11,11 +10,7 @@ echo "Checking for differences in $FILE_PATH between local and $PUSH_GITHUB_REPO
 temp_dir=$(dirname "$0")/tem
 
 # Clone the GitHub repository to a temporary directory
-if [ -n "$ACCESS_TOKEN" ]; then
-    git clone "https://$GITHUB_USERNAME:$ACCESS_TOKEN@$PUSH_GITHUB_REPO_URL" "$temp_dir"
-else
-    git clone "$PUSH_GITHUB_REPO_URL" "$temp_dir"
-fi
+git clone "$PUSH_GITHUB_REPO_URL" "$temp_dir"
 
 
 # Check if the clone was successful

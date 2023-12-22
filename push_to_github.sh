@@ -16,7 +16,6 @@ source github_config.sh
 
 # GitHub repository information
 
-
 # Local file path to copy
 FILE_PATH=".zshrc"
 LOCAL_ZSH_FILE="$HOME/$FILE_PATH"
@@ -25,11 +24,8 @@ LOCAL_ZSH_FILE="$HOME/$FILE_PATH"
 temp_dir=$(mktemp -d)
 
 # Clone the GitHub repository to a temporary directory
-if [ -n "$ACCESS_TOKEN" ]; then
-    git clone "https://$GITHUB_USERNAME:$ACCESS_TOKEN@$PUSH_GITHUB_REPO_URL" "$temp_dir"
-else
-    git clone "$PUSH_GITHUB_REPO_URL" "$temp_dir"
-fi
+
+git clone "$PUSH_GITHUB_REPO_URL" "$temp_dir"
 
 # Check if the clone was successful
 if [ $? -eq 0 ]; then
@@ -40,12 +36,8 @@ if [ $? -eq 0 ]; then
     cd "$temp_dir"
     git add .
     git commit -m "Update $LOCAL_ZSH_FILE"
-    
-    if [ -n "$ACCESS_TOKEN" ]; then
-        git push origin main  # Assuming the branch is 'main'
-    else
-        git push
-    fi
+
+    git push
 
     echo "Successfully pushed changes to $PUSH_GITHUB_REPO_URL."
 else
