@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source github_config.sh
+source config.sh
 
 check_github_repo() {
     response=$(curl -s -o /dev/null -w "%{http_code}" "$CHECK_REPO_URL")

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source github_config.sh
+source config.sh
 
 FILE_PATH=".zshrc"
 
 echo "Checking for differences in $FILE_PATH between local and $PUSH_GITHUB_REPO_URL"
 
 # Clone the GitHub repository to a temporary directory
-temp_dir=$(dirname "$0")/tem
+temp_dir=$HOME/$DIRECTORY_PATH/tem
 
 # Clone the GitHub repository to a temporary directory
 git clone "$PUSH_GITHUB_REPO_URL" "$temp_dir"

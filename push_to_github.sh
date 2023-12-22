@@ -1,13 +1,14 @@
 #!/bin/bash
 
-source github_config.sh
+source config.sh
 
 # Local file path to copy
 FILE_PATH=".zshrc"
 LOCAL_ZSH_FILE="$HOME/$FILE_PATH"
 
 # Temporary directory for cloning
-temp_dir=$(mktemp -d)
+# temp_dir=$(mktemp -d)
+temp_dir=$HOME/$DIRECTORY_PATH/tem
 
 # Clone the GitHub repository to a temporary directory
 
