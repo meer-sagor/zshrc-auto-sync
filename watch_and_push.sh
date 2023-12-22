@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FILE_PATH=".zshrc"
-LOCAL_ZSH_FILE="$HOME/$FILE_PATH"
+source config.sh
+
 SCRIPT_PATH="./push_to_github.sh"  # Adjust the path if needed
 
 if [ -x "$SCRIPT_PATH" ]; then

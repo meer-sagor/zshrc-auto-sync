@@ -9,8 +9,10 @@ check_github_repo() {
         echo "Repository $GITHUB_USERNAME/$GITHUB_REPO exists on GitHub."
     elif [ "$response" -eq 404 ]; then
         echo "Repository $GITHUB_USERNAME/$GITHUB_REPO does not exist on GitHub."
+        exit 1
     else
         echo "Unexpected response from GitHub API: $response"
+        exit 1
     fi
 }
 
