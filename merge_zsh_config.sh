@@ -1,31 +1,42 @@
 #!/bin/bash
 
-# Define the GitHub repository URL and local file path
-GITHUB_USER="meer-sagor"
-GITHUB_REPO="zshrc-auto-sync"
+source github_config.sh
+
 #ACCESS_TOKEN="your-access-token"
-GITHUB_REPO="https://github.com/$GITHUB_USER/$GITHUB_REPO.git"
 FILE_PATH=".zshrc"
 
-echo "Downloading latest .zshrc from $GITHUB_REPO"
+echo "Checking for differences in $FILE_PATH between local and $PUSH_GITHUB_REPO_URL"
 
 # Clone the GitHub repository to a temporary directory
 temp_dir=$(dirname "$0")/tem
 
-#This if for public repo
-git clone $GITHUB_REPO "$temp_dir"
+# Clone the GitHub repository to a temporary directory
+if [ -n "$ACCESS_TOKEN" ]; then
+    git clone "https://$GITHUB_USERNAME:$ACCESS_TOKEN@$PUSH_GITHUB_REPO_URL" "$temp_dir"
+else
+    git clone "$PUSH_GITHUB_REPO_URL" "$temp_dir"
+fi
 
-#this is for private repo
-#git clone "https://$GITHUB_USER:$ACCESS_TOKEN@github.com/$GITHUB_USER/$GITHUB_REPO.git" "$temp_dir"
 
 # Check if the clone was successful
-# shellcheck disable=SC2181
 if [ $? -eq 0 ]; then
-    # Replace the local .zshrc file with the one from the repository
-    cp "$temp_dir/$FILE_PATH" "$HOME/$FILE_PATH"
-    echo "Successfully updated $FILE_PATH with the latest changes."
+    # Check if FILE_PATH exists in the cloned repository
+    if [ -e "$temp_dir/$FILE_PATH" ]; then
+        # Check for differences using diff
+        differences=$(diff "$HOME/$FILE_PATH" "$temp_dir/$FILE_PATH")
+
+        if [ $? -eq 0 ]; then
+            echo "No differences found. Skipping update."
+        else
+            # Replace the local .zshrc file with the one from the repository
+            cp "$temp_dir/$FILE_PATH" "$HOME/$FILE_PATH"
+            echo "Successfully updated $FILE_PATH with the latest changes."
+        fi
+    else
+        echo "$FILE_PATH not found in the cloned repository. Skipping update."
+    fi
 else
-    echo "Error cloning repository from $GITHUB_REPO."
+    echo "Error cloning repository from $PUSH_GITHUB_REPO_URL."
 fi
 
 # Clean up temporary directory

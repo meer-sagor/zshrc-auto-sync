@@ -7,4 +7,4 @@
 ./install_file_monitor.sh
 
 # Run in the background to watch for changes
-./watch_and_push.sh
+# ./watch_and_push.sh
